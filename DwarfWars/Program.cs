@@ -14,7 +14,7 @@ namespace DwarfWars
         [STAThread]
         static void Main()
         {
-            using (var game = new ClientGame())
+            using (var game = new Game1())
                 game.Run();
         }
     }

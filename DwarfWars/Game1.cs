@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Threading;
 using DwarfWars.Library;
 using Lidgren.Network;
 
@@ -10,24 +9,15 @@ namespace DwarfWars
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class ClientGame : Game
+    public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Client client;
-        Thread readingThread;
-        KeyboardState current;
-        int lastIteration;
 
-        public ClientGame()
+        public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            client = new Client();
-            readingThread = new Thread(client.ReadMessages);
-            current = Keyboard.GetState();
-            lastIteration = -1;
-            IsMouseVisible = true;
         }
 
         /// <summary>
@@ -73,35 +63,7 @@ namespace DwarfWars
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            current = Keyboard.GetState();
 
-            var seconds = gameTime.TotalGameTime.Seconds;
-            if(seconds > lastIteration)
-            {
-                if (current.IsKeyDown(Keys.Up))
-                {
-                    client.Movement("U");
-                    lastIteration = seconds;
-                }
-                else if (current.IsKeyDown(Keys.Down))
-                {
-                    client.Movement("D");
-                    lastIteration = seconds;
-
-                }
-                else if (current.IsKeyDown(Keys.Left))
-                {
-                    client.Movement("L");
-                    lastIteration = seconds;
-
-                }
-                else if (current.IsKeyDown(Keys.Right))
-                {
-                    client.Movement("R");
-                    lastIteration = seconds;
-
-                }
-            }
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -115,26 +77,8 @@ namespace DwarfWars
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            Texture2D temp = new Texture2D(GraphicsDevice, 1, 1);
-
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            foreach (ClientPlayer p in client.allPlayers)
-            {
-                Color color;
-                if (p.IsClient)
-                {
-                    color = Color.Green;
-                }
-                else
-                {
-                    color = Color.Red;
-                }
-                spriteBatch.Draw(temp, new Rectangle(p.XPos, p.YPos, 100, 100), color);
-            }
-            
             base.Draw(gameTime);
-            spriteBatch.End();
         }
     }
 }
