@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 2,
   "targets": {
     ".NETStandard,Version=v1.4": {
       "Microsoft.NETCore.Platforms/1.1.0": {
@@ -3703,31 +3703,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pwd12\\.nuget\\packages\\": {}
+    "C:\\Users\\shedd\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
-      "projectUniqueName": "D:\\DwarfWars\\DwarfWars.Library\\DwarfWars.Library.csproj",
+      "projectUniqueName": "C:\\Users\\shedd\\Downloads\\DwarfWars\\DwarfWars.Library\\DwarfWars.Library.csproj",
       "projectName": "DwarfWars.Library",
-      "projectPath": "D:\\DwarfWars\\DwarfWars.Library\\DwarfWars.Library.csproj",
-      "packagesPath": "C:\\Users\\pwd12\\.nuget\\packages\\",
-      "outputPath": "D:\\DwarfWars\\DwarfWars.Library\\obj\\",
+      "projectPath": "C:\\Users\\shedd\\Downloads\\DwarfWars\\DwarfWars.Library\\DwarfWars.Library.csproj",
+      "outputPath": "C:\\Users\\shedd\\Downloads\\DwarfWars\\DwarfWars.Library\\obj\\",
       "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\pwd12\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-      ],
       "originalTargetFrameworks": [
         "netstandard1.4"
       ],
-      "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
-      },
       "frameworks": {
         "netstandard1.4": {
           "projectReferences": {}
