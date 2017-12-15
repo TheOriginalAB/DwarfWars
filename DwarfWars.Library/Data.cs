@@ -79,6 +79,11 @@ namespace DwarfWars.Library
 
     public class World
     {
+        public ITile[,] Map;
+        public Player Creator { get; private set; }
+        public World()
+        {
 
+        }
     }
 }
