@@ -31,7 +31,21 @@ namespace DwarfWars.Library
         Refinery = 11
 
     }
-
+    
+    public enum ResourceType : byte
+    {
+        Coal = 0,
+        TinBar = 1,
+        CopperBar = 2,
+        IronBar = 3,
+        GoldBar = 4,
+        Diamond = 5
+        
+        Root = 6,
+        Stick = 7,
+        
+    }
+    
     public class Player
     {
         private readonly object Lock = new object();
