@@ -39,7 +39,7 @@ namespace DwarfWars.Library
         CopperBar = 2,
         IronBar = 3,
         GoldBar = 4,
-        Diamond = 5
+        Diamond = 5,
         
         Root = 6,
         Stick = 7,
@@ -95,9 +95,68 @@ namespace DwarfWars.Library
     {
         public ITile[,] Map;
         public Player Creator { get; private set; }
+        private int[,] map;
+        private int width, height;
+        private bool useRandomSeed;
+        private string seed;
+        private Random pseudoRandom;
+        private int randomFillpercent;
+
         public World()
         {
-
+            GenerateMap();
         }
+
+        public void GenerateMap()
+        {
+            map = new int[width, height];
+            RandomFillMap();
+
+            for (int i = 0; i < 5; i++)
+            {
+                SmoothMap();
+            }
+
+            GenerateDirt();
+            double abundance = 1.5;
+
+            for (int o = 0; o < 5; o++)
+            {
+                for (int i = 0; i < height * width * abundance / 1024; i++)
+                {
+                    GenerateVeins((float)abundance, o + 3);
+                }
+                abundance -= .2;
+            }
+        }
+
+        public void RandomFillMap()
+        {
+            if (useRandomSeed)
+            {
+                seed = DateTime.Now.ToString();
+                useRandomSeed = false;
+            }
+
+            pseudoRandom = new Random(seed.GetHashCode());
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
+                    {
+                        map[x, y] = 1;
+                    }
+                    else
+                    {
+                        int temp = pseudoRandom.Next(0, 100);
+                        map[x, y] = (temp < randomFillpercent) ? 1 : 0;
+                    }
+                }
+            }
+        }
+
+
     }
 }
