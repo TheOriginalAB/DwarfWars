@@ -6,7 +6,7 @@ namespace DwarfWars.Library
 {
     public abstract class ITile
     {
-    	public TileType TileType;
+        public TileType TileType;
         public bool Opaque;
         public bool Solid;
         
