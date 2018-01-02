@@ -77,7 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DwarfWars.Library\DwarfWars.Library.csproj">
-      <Project>{a8056926-3459-4224-b1fe-e3eaa4d4474e}</Project>
+      <Project>{efca2a40-1fb7-47e9-b575-44e471c41851}</Project>
       <Name>DwarfWars.Library</Name>
     </ProjectReference>
   </ItemGroup>

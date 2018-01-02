@@ -95,6 +95,7 @@ namespace DwarfWars.Server
             }
             spriteBatch.DrawString(font, server._clients.Count.ToString(), new Vector2(0, 0), Color.Black);
             base.Draw(gameTime);
+            
             spriteBatch.End();
         }
         
