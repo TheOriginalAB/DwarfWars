@@ -100,6 +100,7 @@ namespace DwarfWars.Library
     {
         public ITile[,] Map;
         public Player Creator { get; private set; }
+        public List<Player> Players { get; private set; }
         private int[,] map;
         private int width, height;
         private bool useRandomSeed;
@@ -107,11 +108,19 @@ namespace DwarfWars.Library
         private Random pseudoRandom;
         private int randomFillpercent;
 
-        public World()
+        public World(int width, int height, Player creator)
         {
             GenerateMap();
+            this.width = width;
+            this.height = height;
+            Creator = creator;
         }
 
+        public World(World world)
+        {
+
+        }
+        
         public void GenerateMap()
         {
             map = new int[width, height];
@@ -135,9 +144,7 @@ namespace DwarfWars.Library
             }
         }
 
-
-
-        public void GenerateDirt()
+        private void GenerateDirt()
         {
             NoiseMap output = new NoiseMap();
             Perlin per = new Perlin() { Seed = seed.GetHashCode(), Frequency = 1, OctaveCount = Perlin.DefaultOctaveCount, Lacunarity = Perlin.DefaultLacunarity, Persistence = Perlin.DefaultPersistence, Quality = NoiseQuality.Best };
@@ -159,7 +166,7 @@ namespace DwarfWars.Library
             }
         }
 
-        public void GenerateVeins(float abundance, int tileNum)
+        private void GenerateVeins(float abundance, int tileNum)
         {
 
             Vector2 veinPos = new Vector2(pseudoRandom.Next(0, width - 1), pseudoRandom.Next(0, height - 1));
@@ -177,7 +184,7 @@ namespace DwarfWars.Library
             }
         }
 
-        public void RandomFillMap()
+        private void RandomFillMap()
         {
             if (useRandomSeed)
             {
@@ -204,7 +211,7 @@ namespace DwarfWars.Library
             }
         }
 
-        public void SmoothMap()
+        private void SmoothMap()
         {
             for (int x = 0; x < width; x++)
             {
@@ -221,7 +228,7 @@ namespace DwarfWars.Library
             }
         }
 
-        public int GetSurroundingWallCount(int gridX, int gridY)
+        private int GetSurroundingWallCount(int gridX, int gridY)
         {
             int wallCount = 0;
             for (int neighbourX = gridX - 1; neighbourX <= gridX + 1; neighbourX++)
@@ -245,7 +252,7 @@ namespace DwarfWars.Library
             return wallCount;
         }
 
-        public bool IsInMapRange(int x, int y)
+        private bool IsInMapRange(int x, int y)
         {
             return x >= 0 && x < width && y >= 0 && y < height;
         }
