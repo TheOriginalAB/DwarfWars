@@ -196,12 +196,12 @@ namespace DwarfWars.Library
         }
     }
 
-    public class Game : IWorld
+    public class InGame : IWorld
     {
         ITile[,] Map;
         Team[] Teams;
 
-        public Game(ITile[,] map, Team[] teams, Player creator) : base(GameState.Game, creator)
+        public InGame(ITile[,] map, Team[] teams, Player creator) : base(GameState.Game, creator)
         {
             Map = map;
             Teams = teams;

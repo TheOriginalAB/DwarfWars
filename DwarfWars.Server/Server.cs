@@ -154,8 +154,8 @@ namespace DwarfWars.Server
                 case CommandType.Connect:
                     var ConnCommand = (ConnectCommand<ServerPlayer>)command;
                     message.Write(ConnCommand.NewPlayer.ID);
-                    message.Write(ConnCommand.NewPlayer.XPos);
-                    message.Write(ConnCommand.NewPlayer.YPos);
+                    message.Write(ConnCommand.NewPlayer.Avatar.XPos);
+                    message.Write(ConnCommand.NewPlayer.Avatar.YPos);
                     break;
                 case CommandType.Disconnect:
                     var DisconnCommand = (DisconnectCommand<ServerPlayer>)command;
@@ -172,10 +172,10 @@ namespace DwarfWars.Server
                     message.Write(size);
                     for(int i = 0; i < size; i++)
                     {
-                        message.Write(WelcomeCommand.OtherPlayers[i].XPos);
-                        message.Write(WelcomeCommand.OtherPlayers[i].YPos);
+                        message.Write(WelcomeCommand.OtherPlayers[i].Avatar.XPos);
+                        message.Write(WelcomeCommand.OtherPlayers[i].Avatar.YPos);
                         message.Write(WelcomeCommand.OtherPlayers[i].ID);
-                        message.Write(WelcomeCommand.OtherPlayers[i].Rotation);
+                        message.Write(WelcomeCommand.OtherPlayers[i].Avatar.Rotation);
                     }
                     break;
             }

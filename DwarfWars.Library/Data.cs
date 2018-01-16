@@ -49,34 +49,20 @@ namespace DwarfWars.Library
     
     public class Player
     {
-        private readonly object Lock = new object();
-        private int _XPos;
-        public int XPos { get { lock (Lock) { return _XPos; } } set { lock (Lock) { _XPos = value; } } }
-        
-        private int _YPos;
-        public int YPos { get { lock (Lock) { return _YPos; } } set { lock (Lock) { _YPos = value; } } }
 
-        public float Rotation;
+        public PlayerAvatar Avatar;
         public byte ID;
         
         public Player(int x, int y, float rotation)
         {
-            XPos = x;
-            YPos = y;
-            Rotation = rotation;
+            Avatar = new PlayerAvatar(x, y, rotation);
         }
 
         public void SetID(byte id)
         {
             ID = id;
         }
-
-        public void SetPos(int X, int Y)
-        {
-            XPos = X;
-            YPos = Y;
-        }
-
+        
         public static Player GetPlayer(Player[] players, byte ID)
         {
             Player output = null;
@@ -98,4 +84,29 @@ namespace DwarfWars.Library
 
     }
     
+    public class PlayerAvatar
+    {
+        private readonly object Lock = new object();
+        private int _XPos;
+        public int XPos { get { lock (Lock) { return _XPos; } } set { lock (Lock) { _XPos = value; } } }
+
+        private int _YPos;
+        public int YPos { get { lock (Lock) { return _YPos; } } set { lock (Lock) { _YPos = value; } } }
+
+        private float _Rotation;
+        public float Rotation { get { lock (Lock) { return _Rotation; } } set { lock (Lock) { _Rotation = value; } } }
+
+        public void SetPos(int X, int Y)
+        {
+            XPos = X;
+            YPos = Y;
+        }
+
+        public PlayerAvatar(int x, int y, float rotation)
+        {
+            XPos = x;
+            YPos = y;
+            Rotation = rotation;
+        }
+    }
 }

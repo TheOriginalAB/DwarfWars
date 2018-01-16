@@ -48,8 +48,8 @@ namespace DwarfWars.Library
 
         public override void Run()
         {
-            Target.XPos += XMovement;
-            Target.YPos += YMovement;
+            Target.Avatar.XPos += XMovement;
+            Target.Avatar.YPos += YMovement;
         }
     }
 
@@ -121,7 +121,7 @@ namespace DwarfWars.Library
         public override void Run()
         {
             Player.SetID(PlayerID);
-            Player.SetPos(Pos[0], Pos[1]);
+            Player.Avatar.SetPos(Pos[0], Pos[1]);
             ClientList.AddRange(OtherPlayers);
         }
     }

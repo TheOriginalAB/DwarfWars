@@ -58,7 +58,7 @@ namespace DwarfWars
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("File");
             cam = new Camera2D(GraphicsDevice); 
-            viewVector = new Vector2(client.player.XPos + 25, client.player.YPos + 25);
+            viewVector = new Vector2(client.player.Avatar.XPos + 25, client.player.Avatar.YPos + 25);
             cam.LookAt(viewVector);
             // TODO: use this.Content to load your game content here
         }
@@ -132,8 +132,8 @@ namespace DwarfWars
                 {
                     color = Color.Red;
                 }
-                spriteBatch.Draw(temp, new Rectangle(p.XPos, p.YPos, 50, 50), color);
-                spriteBatch.DrawString(font, p.ID.ToString(), new Vector2(p.XPos, p.YPos), Color.Black);
+                spriteBatch.Draw(temp, new Rectangle(p.Avatar.XPos, p.Avatar.YPos, 50, 50), color);
+                spriteBatch.DrawString(font, p.ID.ToString(), new Vector2(p.Avatar.XPos, p.Avatar.YPos), Color.Black);
             }
             spriteBatch.End();
             spriteBatch.Begin();
