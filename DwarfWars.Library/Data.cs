@@ -80,8 +80,13 @@ namespace DwarfWars.Library
 
     public class Team
     {
-        Player[] players;
+        public Player[] players;
 
+        public Team(List<Player> lobby, int amount)
+        {
+            players = new Player[amount];
+
+        }
     }
     
     public class PlayerAvatar

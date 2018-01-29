@@ -188,7 +188,7 @@ namespace DwarfWars.Library
 
     public class Lobby : IWorld
     {
-        List<Player> Players;
+        public List<Player> Players;
 
         public Lobby(List<Player> players, Player creator) : base(GameState.Lobby, creator)
         {
@@ -198,13 +198,20 @@ namespace DwarfWars.Library
 
     public class InGame : IWorld
     {
-        ITile[,] Map;
-        Team[] Teams;
+        public ITile[,] Map;
+        public Team[] Teams;
 
-        public InGame(ITile[,] map, Team[] teams, Player creator) : base(GameState.Game, creator)
+        public InGame(ITile[,] map, Lobby lobby, Player creator) : base(GameState.Game, creator)
         {
             Map = map;
-            Teams = teams;
+            Teams = CreateTeams(lobby.Players);
+        }
+
+        public Team[] CreateTeams(List<Player> players)
+        {
+            Team[] output = new Team[2];
+
+            return output;
         }
     }
 
