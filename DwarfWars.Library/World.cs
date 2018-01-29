@@ -10,29 +10,53 @@ using SharpNoise.Builders;
 
 namespace DwarfWars.Library
 {
-    public class Worlda
+    
+    public abstract class IWorld
+    {
+        public GameState GameState;
+        public Player Creator;
+
+        public IWorld(GameState gameState, Player creator)
+        {
+            GameState = gameState;
+            Creator = creator;
+        }
+    }
+
+    public class Lobby : IWorld
+    {
+        public List<Player> Players;
+
+        public Lobby(List<Player> players, Player creator) : base(GameState.Lobby, creator)
+        {
+            Players = players;
+        }
+    }
+
+    public class InGame : IWorld
     {
         public ITile[,] Map;
-        public Player Creator { get; private set; }
-        public List<Player> Players { get; private set; }
-        private int[,] map;
+        public Team[] Teams;
+
         private int width, height;
         private bool useRandomSeed;
         private string seed;
         private Random pseudoRandom;
         private int randomFillpercent;
+        private int[,] map;
 
-        public Worlda(int width, int height, Player creator)
+        public InGame(ITile[,] map, Lobby lobby, Player creator) : base(GameState.Game, creator)
         {
+            Map = map;
+            Teams = CreateTeams(lobby.Players);
             GenerateMap();
-            this.width = width;
-            this.height = height;
-            Creator = creator;
         }
 
-        public Worlda(Worlda world)
+        public Team[] CreateTeams(List<Player> players)
         {
+            Team[] output = new Team[2];
 
+            return output;
         }
 
         public void GenerateMap()
@@ -45,20 +69,9 @@ namespace DwarfWars.Library
                 SmoothMap();
             }
 
-            GenerateDirt();
-            double abundance = 1.5;
-
-            for (int o = 0; o < 5; o++)
-            {
-                for (int i = 0; i < height * width * abundance / 1024; i++)
-                {
-                    GenerateVeins((float)abundance, o + 3);
-                }
-                abundance -= .2;
-            }
         }
 
-        private void GenerateDirt()
+        private void GeneratePatch(int abundance, int tileNum)
         {
             NoiseMap output = new NoiseMap();
             Perlin per = new Perlin() { Seed = seed.GetHashCode(), Frequency = 1, OctaveCount = Perlin.DefaultOctaveCount, Lacunarity = Perlin.DefaultLacunarity, Persistence = Perlin.DefaultPersistence, Quality = NoiseQuality.Best };
@@ -169,49 +182,6 @@ namespace DwarfWars.Library
         private bool IsInMapRange(int x, int y)
         {
             return x >= 0 && x < width && y >= 0 && y < height;
-        }
-
-
-    }
-
-    public abstract class IWorld
-    {
-        public GameState GameState;
-        public Player Creator;
-
-        public IWorld(GameState gameState, Player creator)
-        {
-            GameState = gameState;
-            Creator = creator;
-        }
-    }
-
-    public class Lobby : IWorld
-    {
-        public List<Player> Players;
-
-        public Lobby(List<Player> players, Player creator) : base(GameState.Lobby, creator)
-        {
-            Players = players;
-        }
-    }
-
-    public class InGame : IWorld
-    {
-        public ITile[,] Map;
-        public Team[] Teams;
-
-        public InGame(ITile[,] map, Lobby lobby, Player creator) : base(GameState.Game, creator)
-        {
-            Map = map;
-            Teams = CreateTeams(lobby.Players);
-        }
-
-        public Team[] CreateTeams(List<Player> players)
-        {
-            Team[] output = new Team[2];
-
-            return output;
         }
     }
 
