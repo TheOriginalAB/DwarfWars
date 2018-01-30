@@ -114,4 +114,17 @@ namespace DwarfWars.Library
             Rotation = rotation;
         }
     }
+
+    public class Data
+    {
+        private static readonly Data _instance = new Data();
+
+
+        public Data Information { get { return _instance; } }
+
+        private Data()
+        {
+            
+        }
+    }
 }

@@ -33,9 +33,9 @@ namespace DwarfWars
             client = new NetClient(config);
             client.Start();
             // pwd upper
-            // string ip = "10.49.250.192";
+            string ip = "10.49.250.192";
             // pwd lower
-            string ip = "10.49.250.160";
+            // string ip = "10.49.250.160";
             int port = 14242;
             client.Connect(ip, port);
 

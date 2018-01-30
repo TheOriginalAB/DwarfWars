@@ -108,7 +108,7 @@ namespace DwarfWars.Server
                     }
                     server.Recycle(message);
                 }
-            }
+            }                       
         }
 
         public void SendCommandToAll(ICommand command, byte playerID)

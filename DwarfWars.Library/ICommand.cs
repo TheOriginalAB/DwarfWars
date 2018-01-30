@@ -100,7 +100,7 @@ namespace DwarfWars.Library
             Players.Remove(LeavingPlayer);
         }
     }
-
+     
     public class WelcomeCommand<T> : ICommand where T : Player
     {
         public byte PlayerID;
