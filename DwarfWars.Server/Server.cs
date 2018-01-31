@@ -17,6 +17,7 @@ namespace DwarfWars.Server
         private NetServer server;
         private List<ServerPlayer> Clients;
         public List<ServerPlayer> _clients { get { lock (Lock) { return Clients; } } set { lock (Lock) { Clients = value; } } }
+        public IWorld<ServerPlayer> world;
         private byte currentID;
 
         public Server()

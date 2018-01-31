@@ -18,6 +18,7 @@ namespace DwarfWars
         public ClientPlayer player;
         
         public List<ClientPlayer> allPlayers;
+        public IWorld<ClientPlayer> world;
 
         public Client()
         {

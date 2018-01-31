@@ -78,17 +78,16 @@ namespace DwarfWars.Library
         }
     }
 
-    public class Team
+    public class Team<T> where T : Player
     {
-        public Player[] players;
+        public T[] players;
 
-        public Team(List<Player> lobby, int amount)
+        public Team(List<T> lobby, int amount)
         {
-            players = new Player[amount];
-
+            players = new T[amount];
         }
     }
-    
+
     public class PlayerAvatar
     {
         private readonly object Lock = new object();
@@ -100,7 +99,7 @@ namespace DwarfWars.Library
 
         private float _Rotation;
         public float Rotation { get { lock (Lock) { return _Rotation; } } set { lock (Lock) { _Rotation = value; } } }
-
+    
         public void SetPos(int X, int Y)
         {
             XPos = X;

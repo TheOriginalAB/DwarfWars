@@ -11,7 +11,7 @@ using SharpNoise.Builders;
 namespace DwarfWars.Library
 {
     
-    public abstract class IWorld
+    public abstract class IWorld<T> where T : Player
     {
         public GameState GameState;
         public Player Creator;
@@ -23,38 +23,39 @@ namespace DwarfWars.Library
         }
     }
 
-    public class Lobby : IWorld
+    public class Lobby<T> : IWorld<T> where T : Player
     {
-        public List<Player> Players;
+        public List<T> Players;
 
-        public Lobby(List<Player> players, Player creator) : base(GameState.Lobby, creator)
+        public Lobby(List<T> players, Player creator) : base(GameState.Lobby, creator)
         {
             Players = players;
         }
     }
 
-    public class InGame : IWorld
+    public class InGame<T> : IWorld<T> where T : Player
     {
         public ITile[,] Map;
-        public Team[] Teams;
+        public Team<T>[] Teams;
 
-        private int width, height;
+        private readonly int width = 150;
+        private readonly int height = 150;
         private bool useRandomSeed;
         private string seed;
         private Random pseudoRandom;
-        private int randomFillpercent;
+        private readonly int randomFillpercent = 60;
         private int[,] map;
 
-        public InGame(ITile[,] map, Lobby lobby, Player creator) : base(GameState.Game, creator)
+        public InGame(ITile[,] map, Lobby<T> lobby) : base(GameState.Game, lobby.Creator)
         {
             Map = map;
             Teams = CreateTeams(lobby.Players);
             GenerateMap();
         }
 
-        public Team[] CreateTeams(List<Player> players)
+        public Team<T>[] CreateTeams(List<T> players)
         {
-            Team[] output = new Team[2];
+            Team<T>[] output = new Team<T>[2];
 
             return output;
         }
@@ -185,11 +186,11 @@ namespace DwarfWars.Library
         }
     }
 
-    public class PostGame : IWorld
+    public class PostGame<T> : IWorld<T> where T : Player
     {
-        Team Winner;
+        Team<T> Winner;
 
-        public PostGame(Team winner, Player creator) : base(GameState.PostGame, creator)
+        public PostGame(Team<T> winner, InGame<T> game) : base(GameState.PostGame, game.Creator)
         {
             Winner = winner;
         }
