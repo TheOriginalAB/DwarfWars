@@ -45,12 +45,14 @@ namespace DwarfWars
             allPlayers.Add(player);
         }
 
-        public void Movement(string direction, Camera2D cam)
+        public void Movement(string direction)
         {
-            var xmovement = direction.Contains("L") ? -5 : direction.Contains("R") ? 5 : 0;
-            var ymovement = direction.Contains("U") ? -5 : direction.Contains("D") ? 5 : 0;
+            var xmovement = direction.Contains("L") ? -5 : 0;
+            xmovement += direction.Contains("R") ? 5 : 0;
+            var ymovement = direction.Contains("U") ? -5 : 0; 
+            ymovement += direction.Contains("D") ? 5 : 0;
             var command = new MovementCommand(player, xmovement, ymovement, direction, ICommand.GenerateRandID());
-            cam.Move(new Vector2(xmovement, ymovement));
+            
             Thread thread = new Thread(command.Run);
             thread.Start();
             SendMessage(command);
@@ -83,8 +85,10 @@ namespace DwarfWars
                                     case CommandType.Movement:
                                         playerID = message.ReadByte();
                                         string direction = message.ReadString();
-                                        var xmovement = direction.Contains("L") ? -5 : direction.Contains("R") ? 5 : 0;
-                                        var ymovement = direction.Contains("U") ? -5 : direction.Contains("D") ? 5 : 0;
+                                        var xmovement = direction.Contains("L") ? -5 : 0;
+                                        xmovement += direction.Contains("R") ? 5 : 0;
+                                        var ymovement = direction.Contains("U") ? -5 : 0;
+                                        ymovement += direction.Contains("D") ? 5 : 0;
                                         if (playerID == player.ID)
                                         {
                                             xmovement = 0;

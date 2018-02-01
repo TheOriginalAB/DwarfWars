@@ -16,23 +16,23 @@ namespace DwarfWars.Library
 
     public enum TileType : byte
     {
-        Air = 0,
-        Stone = 1,
-        Barrier = 2,
-        Dirt = 3,
-
-        CoalOre = 4,
-        TinOre = 5,
-        CopperOre = 6,
-        IronOre = 7,
-        GoldOre = 8,
-        DiamondOre = 9,
-
-        WorkBench = 10,
-        Refinery = 11
+        General,
+        Ore,
+        Patch,
+        Barrier,
+        Interactive
 
     }
     
+    public enum ItemType : byte
+    {
+        Material,
+        Weapon,
+        Tool,
+        Armor,
+        Ammo
+    }
+
     public enum ResourceType : byte
     {
         Coal = 0,
@@ -99,7 +99,7 @@ namespace DwarfWars.Library
 
         private float _Rotation;
         public float Rotation { get { lock (Lock) { return _Rotation; } } set { lock (Lock) { _Rotation = value; } } }
-    
+        
         public void SetPos(int X, int Y)
         {
             XPos = X;

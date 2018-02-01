@@ -21,6 +21,10 @@ namespace DwarfWars.Library
             GameState = gameState;
             Creator = creator;
         }
+
+        public abstract void Transition(ref IWorld<T> world);
+
+        
     }
 
     public class Lobby<T> : IWorld<T> where T : Player
@@ -30,6 +34,18 @@ namespace DwarfWars.Library
         public Lobby(List<T> players, Player creator) : base(GameState.Lobby, creator)
         {
             Players = players;
+        }
+
+        public override void Transition(ref IWorld<T> world)
+        {
+            world = new InGame<T>((Lobby<T>)world, CreateTeams(Players));
+        }
+
+        public Team<T>[] CreateTeams(List<T> players)
+        {
+            Team<T>[] output = new Team<T>[2];
+
+            return output;
         }
     }
 
@@ -46,20 +62,15 @@ namespace DwarfWars.Library
         private readonly int randomFillpercent = 60;
         private int[,] map;
 
-        public InGame(ITile[,] map, Lobby<T> lobby) : base(GameState.Game, lobby.Creator)
+        public InGame(Lobby<T> lobby, Team<T>[] teams) : base(GameState.Game, lobby.Creator)
         {
-            Map = map;
-            Teams = CreateTeams(lobby.Players);
+            Map = new ITile[width, height];
+            Teams = teams;
             GenerateMap();
         }
 
-        public Team<T>[] CreateTeams(List<T> players)
-        {
-            Team<T>[] output = new Team<T>[2];
 
-            return output;
-        }
-
+#region Generation logic 
         public void GenerateMap()
         {
             map = new int[width, height];
@@ -184,6 +195,12 @@ namespace DwarfWars.Library
         {
             return x >= 0 && x < width && y >= 0 && y < height;
         }
+#endregion
+
+        public override void Transition(ref IWorld<T> ingame)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class PostGame<T> : IWorld<T> where T : Player
@@ -193,6 +210,11 @@ namespace DwarfWars.Library
         public PostGame(Team<T> winner, InGame<T> game) : base(GameState.PostGame, game.Creator)
         {
             Winner = winner;
+        }
+
+        public override void Transition(ref IWorld<T> lobby)
+        {
+            throw new NotImplementedException();
         }
     }
 

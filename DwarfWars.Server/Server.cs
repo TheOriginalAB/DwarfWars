@@ -18,6 +18,7 @@ namespace DwarfWars.Server
         private List<ServerPlayer> Clients;
         public List<ServerPlayer> _clients { get { lock (Lock) { return Clients; } } set { lock (Lock) { Clients = value; } } }
         public IWorld<ServerPlayer> world;
+
         private byte currentID;
 
         public Server()
@@ -61,8 +62,10 @@ namespace DwarfWars.Server
                                 {
                                     case CommandType.Movement:
                                         string direction = message.ReadString();
-                                        var xmovement = direction.Contains("L") ? -5 : direction.Contains("R") ? 5 : 0;
-                                        var ymovement = direction.Contains("U") ? -5 : direction.Contains("D") ? 5 : 0;
+                                        var xmovement = direction.Contains("L") ? -5 : 0;
+                                        xmovement += direction.Contains("R") ? 5 : 0;
+                                        var ymovement = direction.Contains("U") ? -5 : 0;
+                                        ymovement += direction.Contains("D") ? 5 : 0;
                                         command = new MovementCommand(GetServerPlayer(message), xmovement, ymovement, direction, commandId);
 
                                         break;

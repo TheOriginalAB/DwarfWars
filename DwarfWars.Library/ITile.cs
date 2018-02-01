@@ -9,6 +9,7 @@ namespace DwarfWars.Library
         public TileType TileType;
         public bool Opaque;
         public bool Solid;
+        public bool IsAir;
         
         public abstract void OnDestroy(Player target);
         public abstract void OnBuild(Player target);

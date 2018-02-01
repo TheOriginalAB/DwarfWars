@@ -87,7 +87,7 @@ namespace DwarfWars
             {
                 movestring += "U";
             }
-            else if (current.IsKeyDown(Keys.Down))
+            if (current.IsKeyDown(Keys.Down))
             {
                 movestring += "D";
 
@@ -97,14 +97,16 @@ namespace DwarfWars
                 movestring += "L";
 
             }
-            else if (current.IsKeyDown(Keys.Right))
+            if (current.IsKeyDown(Keys.Right))
             {
                 movestring += "R";
             }
             if (movestring != String.Empty)
             {
-                client.Movement(movestring, cam); 
+                client.Movement(movestring); 
             }
+            Vector2 viewPoint = new Vector2(((client.player.Avatar.XPos + 25) * .75f + (Mouse.GetState(Window).X * .25f)), ((client.player.Avatar.YPos + 25) * .75f + (Mouse.GetState(Window).Y * .25f)));
+            cam.LookAt(viewPoint);
             // TODO: Add your update logic here
             base.Update(gameTime);
         }
