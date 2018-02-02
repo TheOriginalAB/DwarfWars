@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DwarfWars.Library
 {
-    public abstract class ITile
+    public abstract class Tile
     {
         public TileType TileType;
         public bool Opaque;
@@ -13,6 +13,6 @@ namespace DwarfWars.Library
         
         public abstract void OnDestroy(Player target);
         public abstract void OnBuild(Player target);
-        public abstract void OnUpdate(ITile[] area);
+        public abstract void OnUpdate(Tile[] area);
     }
 }

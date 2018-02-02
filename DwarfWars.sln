@@ -9,6 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwarfWars.Server", "DwarfWa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwarfWars.Library", "DwarfWars.Library\DwarfWars.Library.csproj", "{EFCA2A40-1FB7-47E9-B575-44E471C41851}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FE961AF0-04A5-485D-9CEA-07341A517880}"
+	ProjectSection(SolutionItems) = preProject
+		tiles.json = tiles.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwarfWars.Manager", "DwarfWars.Manager\DwarfWars.Manager.csproj", "{57A8AA1F-9249-406E-93F8-7138A6BE69EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +46,14 @@ Global
 		{EFCA2A40-1FB7-47E9-B575-44E471C41851}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EFCA2A40-1FB7-47E9-B575-44E471C41851}.Release|x86.ActiveCfg = Release|Any CPU
 		{EFCA2A40-1FB7-47E9-B575-44E471C41851}.Release|x86.Build.0 = Release|Any CPU
+		{57A8AA1F-9249-406E-93F8-7138A6BE69EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57A8AA1F-9249-406E-93F8-7138A6BE69EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57A8AA1F-9249-406E-93F8-7138A6BE69EA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{57A8AA1F-9249-406E-93F8-7138A6BE69EA}.Debug|x86.Build.0 = Debug|Any CPU
+		{57A8AA1F-9249-406E-93F8-7138A6BE69EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57A8AA1F-9249-406E-93F8-7138A6BE69EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57A8AA1F-9249-406E-93F8-7138A6BE69EA}.Release|x86.ActiveCfg = Release|Any CPU
+		{57A8AA1F-9249-406E-93F8-7138A6BE69EA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

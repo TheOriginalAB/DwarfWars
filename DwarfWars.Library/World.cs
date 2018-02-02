@@ -51,7 +51,7 @@ namespace DwarfWars.Library
 
     public class InGame<T> : IWorld<T> where T : Player
     {
-        public ITile[,] Map;
+        public Tile[,] Map;
         public Team<T>[] Teams;
 
         private readonly int width = 150;
@@ -64,7 +64,7 @@ namespace DwarfWars.Library
 
         public InGame(Lobby<T> lobby, Team<T>[] teams) : base(GameState.Game, lobby.Creator)
         {
-            Map = new ITile[width, height];
+            Map = new Tile[width, height];
             Teams = teams;
             GenerateMap();
         }
