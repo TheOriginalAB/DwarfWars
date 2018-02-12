@@ -13,44 +13,8 @@ namespace DwarfWars.Manager
         {
         }
     }
-
-    class Data
-    {
-        public string version;
-        public Tile[] tileTypes;
-        public Item[] itemTypes;
-        public Data(string v)
-        {
-            version = v;
-            itemTypes = new Item[2] { new Item(0, "Sword", ItemType.Weapon), new Item(1, "Rock", ItemType.Material) };
-            tileTypes = new Tile[2] { new Tile(0, "Air", "", TileType.Air, new int[0]), new Tile(1, "Stone", "stone", TileType.General, new int[] { 1 }) };
-        }
-    }
-
-    class Tile
-    {
-        public int id;
-        public string name;
-        public string filename;
-        public TileType tileType;
-        public int[] droptable;
-
-        public Tile(int id, string n, string fn, TileType tt, int[] items)
-        {
-            this.id = id;
-            name = n;
-            filename = fn;
-            tileType = tt;
-            droptable = items;
-        }
-    }
-
-    enum TileType
-    {
-        Air, General, Ore, Patch, Barrier, Interactive
-    }
-
-    enum ItemType
+    
+    public enum ItemType
     {
         Material,
         Weapon,
@@ -59,15 +23,13 @@ namespace DwarfWars.Manager
         Ammo
     }
 
-    class Item
+    public class Item : Entity
     {
-        public int id;
         public string name;
         public ItemType itemType;
 
-        public Item(int id, string n, ItemType item)
+        public Item(int id, string n, string fn, ItemType item) : base(id, fn)
         {
-            this.id = id;
             name = n;
             itemType = item;
         }
